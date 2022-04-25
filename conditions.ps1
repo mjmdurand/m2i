@@ -73,7 +73,7 @@ Sinon vous etes totalement nul
 Write-Host 'Exercice 4' 
 $earthshape=Read-Host 'La terre est ronde ? oui(o) ou non(n)' 
 $galaxy=Read-Host "La terre fait partie d'une galaxie qui a pour etoile le soleil ? oui(o) ou non(n)" 
-if (($earthshape -eq 'oui' -or $earthshape -eq 'o') -and ($galaxy -eq 'oui' -or $galaxy )) {
+if (($earthshape -eq 'oui' -or $earthshape -eq 'o') -and ($galaxy -eq 'oui' -or $galaxy -eq 'o')) {
     Write-Host 'Vous etes incroyable' -ForegroundColor Yellow -BackgroundColor Blue
 }
 elseif (($earthshape -eq 'oui' -or $earthshape -eq 'o') -or ($galaxy -eq 'oui' -or $galaxy -eq 'o')) {

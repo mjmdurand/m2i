@@ -71,10 +71,10 @@ Write-Host "Exercice 3 : Le plus petit nombre"
 [int16]$nb3 = Read-Host -Prompt "Saisir le troisième nombre"
 $array = ($nb1,$nb2,$nb3)
 $lower = $array | Sort-Object | select -First 1
-Write-Host "La valeur la plus haute est $lower"
+Write-Host "La valeur la plus basse est $lower"
 
 $lower2 = $array | Sort
-Write-Host "V2 : La valeur la plus haute est" $lower2[0]
+Write-Host "V2 : La valeur la plus basse est" $lower2[0]
 
 
 <#

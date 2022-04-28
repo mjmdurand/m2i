@@ -48,6 +48,7 @@ switch ($mode){
 Write-host "Vous avez $try essais pour trouver le nombre aléatoire"
 
 #game loop
+Clear-Variable -Name "history"
 do{
 Write-host "$try essais restants" -ForegroundColor yellow
 [int]$prompt = read-host "Veuillez saisir un nombre entre $random_number_min et $random_number_max (réponse $random_number)"
@@ -59,6 +60,9 @@ Write-host "$try essais restants" -ForegroundColor yellow
     }
 
 $try--
+$history = @($history + $prompt)
+Write-host "Valeurs déjà saisies : $history" -ForegroundColor Cyan
+
 } until ($prompt -eq $random_number -or $try -eq 0)
 
 if ($prompt -eq $random_number){

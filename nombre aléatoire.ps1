@@ -1,4 +1,11 @@
-﻿
+﻿#Clear all old variables
+Clear-Variable -Name "history"
+Clear-Variable -Name "random_number_min"
+Clear-Variable -Name "random_number_max"
+Clear-Variable -Name "random_number"
+Clear-Variable -Name "mode"
+Clear-Variable -Name "try"
+Clear-Variable -Name "prompt"
 
 Write-host 'THE MENTALIST'
 
@@ -48,7 +55,6 @@ switch ($mode){
 Write-host "Vous avez $try essais pour trouver le nombre aléatoire"
 
 #game loop
-Clear-Variable -Name "history"
 do{
 Write-host "$try essais restants" -ForegroundColor yellow
 [int]$prompt = read-host "Veuillez saisir un nombre entre $random_number_min et $random_number_max (réponse $random_number)"

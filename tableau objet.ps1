@@ -1,4 +1,5 @@
-﻿$data = @(
+﻿#definission des variables
+$data = @(
         [pscustomobject]@{Nom='Ordinateur'; HT=800; TVA=4; Etat='neuf'}
         [pscustomobject]@{Nom='Television'; HT=250; TVA=2; Etat='neuf'}
         [pscustomobject]@{Nom='Clavier'; HT=15; TVA=1; Etat='occasion'}
@@ -16,6 +17,8 @@
         write-host $tva4
 )
 
+
+#affichage des infos
 foreach ($element in $data){
     switch($element.TVA){
         1 {$ttc = $element.HT * $tva1
@@ -32,6 +35,7 @@ foreach ($element in $data){
 $element.Nom + ' coûte ' + $ttc + '€ (état ' + $element.Etat + ')'
 }
 
+#comptage des lettres du nom
 foreach ($element in $data){
     
 '"'+ $element.Nom + '" comporte ' + $element.Nom.Length + ' caractères'

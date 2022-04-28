@@ -7,7 +7,7 @@ Clear-Variable -Name "mode"
 Clear-Variable -Name "try"
 Clear-Variable -Name "prompt"
 
-Write-host 'THE MENTALIST' -BackgroundColor Cyan -ForegroundColor white
+Write-host '~~~~ THE MENTALIST ~~~~' -BackgroundColor Cyan -ForegroundColor white
 
 #Ask for game mode
 do {

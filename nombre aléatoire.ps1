@@ -7,6 +7,7 @@ Clear-Variable -Name "mode"
 Clear-Variable -Name "try"
 Clear-Variable -Name "prompt"
 
+#display title
 Write-host '~~~~ THE MENTALIST ~~~~' -BackgroundColor Cyan -ForegroundColor white
 
 #Ask for game mode
@@ -71,6 +72,7 @@ Write-host "Valeurs déjà saisies : $history" -ForegroundColor Cyan
 
 } until ($prompt -eq $random_number -or $try -eq 0)
 
+#Display end messages
 if ($prompt -eq $random_number){
 Write-host "Félicitation, vous êtes un champion de mentalisme !" -ForegroundColor Green
 }

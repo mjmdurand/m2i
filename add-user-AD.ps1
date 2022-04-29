@@ -1,9 +1,13 @@
 $csv = "C:\utilisateurs.csv"
 $data = Import-Csv -Path $csv -Delimiter ';'
 
+$publicTld='fr'
+$publicDomain='m2iformation'
+
 $DCtld='lan'
 $DCdomain='m2i'
 $rootOU = 'organisation'
+$Defaultpassword = 'azerty@1'
 
 
 #check if root OU is already created, creating it if not
@@ -50,13 +54,24 @@ foreach($user in $data){
     $firstName = $user.prenom.Tolower()
     $phone = $user.telephone.Tolower()
     $userLogin = $name+'.'+$firstName
+
+    $publicmail = "$firstName.$name@$publicDomain.$publicTld"
    
     if (Get-ADUser -Filter {SamAccountName -eq $userLogin})
     {
-        Write-Host "User $userLogin already exists." -ForegroundColor red        
+        Write-Host "User $userLogin ($firstName $name) already exists." -ForegroundColor red        
     }
     else{
-        Write-Host "User $userLogin don't exists." -ForegroundColor green
+        Write-Host "Creating user $userLogin ($firstName $name)." -ForegroundColor green
+        New-ADUser -Name "$name $firstName" `
+        -DisplayName "$firstName $name" `
+        -SamAccountName $userLogin `
+        -UserPrincipalName "$publicmail@$DCdomain.$DCtld" `
+        -EmailAddress $publicmail `
+        -Path "$UserslocationOUpath" `
+        -AccountPassword(ConvertTo-SecureString $Defaultpassword -AsPlainText -Force) `
+        -ChangePasswordAtLogon $false `
+        -Enabled $true
     }
 }
 

@@ -9,10 +9,8 @@ $rootOU = 'organisation'
 #check if root OU is already created, creating it if not
 $rootOUpath = "OU=$rootOU,DC=$DCdomain,DC=$DCtld"
 if (Get-ADOrganizationalUnit -Filter 'distinguishedName -eq $rootOUpath') {
-    Write-Host "$rootOUpath already exists." -ForegroundColor Red
   } 
   else {
-    Write-Host "$rootOUpath don't exists." -ForegroundColor green
     Write-Host "Creating $rootOUpath OU" -ForegroundColor yellow
     #New-ADOrganizationalUnit -Name $rootOU -Path "DC=$DCdomain,DC=$DCtld"
   }
@@ -24,7 +22,6 @@ foreach($user in $data){
     if (Get-ADOrganizationalUnit -Filter 'distinguishedName -eq $locationOUpath') {
     } 
     else {
-        Write-Host "$locationOU OU don't exists." -ForegroundColor green
         Write-Host "Creating $locationOU OU" -ForegroundColor yellow
         New-ADOrganizationalUnit -Name $locationOU -Path $rootOUpath
     }
@@ -34,7 +31,6 @@ foreach($user in $data){
     if (Get-ADOrganizationalUnit -Filter 'distinguishedName -eq $UserslocationOUpath') {
     } 
     else {
-        Write-Host "Users OU don't exists." -ForegroundColor green
         Write-Host "Creating Users OU" -ForegroundColor yellow
         New-ADOrganizationalUnit -Name "users" -Path $locationOUpath
     }
@@ -44,7 +40,6 @@ foreach($user in $data){
     if (Get-ADOrganizationalUnit -Filter 'distinguishedName -eq $ComputerslocationOUpath') {
     } 
     else {
-        Write-Host "Computers OU don't exists." -ForegroundColor green
         Write-Host "Creating Computers OU" -ForegroundColor yellow
         New-ADOrganizationalUnit -Name "computers" -Path $locationOUpath
     }

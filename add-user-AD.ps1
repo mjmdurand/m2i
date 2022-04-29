@@ -55,7 +55,7 @@ foreach($user in $data){
     $phone = $user.telephone.Tolower()
     $userLogin = $name+'.'+$firstName
 
-    $publicmail = "$firstName.$name@$publicDomain.$publicTld"
+    $publicmail = "$firstName.$name@$locationOU.$publicDomain.$publicTld"
    
     #if user already exists
     if (Get-ADUser -Filter {SamAccountName -eq $userLogin})
@@ -66,15 +66,20 @@ foreach($user in $data){
     #creating user if not exists
     else{
         Write-Host "Creating user $userLogin ($firstName $name)." -ForegroundColor green
-        New-ADUser -Name "$name $firstName" `
-        -DisplayName "$firstName $name" `
-        -SamAccountName $userLogin `
-        -UserPrincipalName "$publicmail@$DCdomain.$DCtld" `
-        -EmailAddress $publicmail `
-        -Path "$UserslocationOUpath" `
-        -AccountPassword(ConvertTo-SecureString $Defaultpassword -AsPlainText -Force) `
-        -ChangePasswordAtLogon $false `
-        -Enabled $true
+        try { 
+            New-ADUser -Name "$name $firstName" `
+            -DisplayName "$firstName $name" `
+            -SamAccountName $userLogin `
+            -UserPrincipalName "$publicmail@$DCdomain.$DCtld" `
+            -MobilePhone "$phone" `
+            -Office "$locationOU" `
+            -EmailAddress $publicmail `
+            -Path "$UserslocationOUpath" `
+            -AccountPassword(ConvertTo-SecureString $Defaultpassword -AsPlainText -Force) `
+            -ChangePasswordAtLogon $false `
+            -Enabled $true
+        }
+        catch {Write-Host "Error while creating user ($userLogin, $firstName $name)." -ForegroundColor red }
     }
 }
 

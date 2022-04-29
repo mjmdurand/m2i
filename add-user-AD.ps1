@@ -18,7 +18,7 @@ if (Get-ADOrganizationalUnit -Filter 'distinguishedName -eq $rootOUpath') {
 
 #check if location OU is already created, creating it if not
 foreach($user in $data){
-    $locationOU = $user.lieu
+    $locationOU = $user.lieu.Tolower()
     $locationOUpath = "OU=$locationOU,OU=$rootOU,DC=$DCdomain,DC=$DCtld"
     if (Get-ADOrganizationalUnit -Filter 'distinguishedName -eq $locationOUpath') {
         Write-Host "$locationOU already exists." -ForegroundColor red
@@ -51,14 +51,6 @@ foreach($user in $data){
         #New-ADOrganizationalUnit -Name "Computers" -Path $locationOUpath
     }
 }
-
-
-
-
-
-
-$newOU = "OU=$navnpaaou,$parentOU"
-
 
 
 

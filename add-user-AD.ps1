@@ -63,6 +63,6 @@ foreach($user in $data){
     else{
         Write-Host "User $userLogin don't exists." -ForegroundColor green
     }
-
+}
 
 

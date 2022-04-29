@@ -57,7 +57,7 @@ foreach($user in $data){
 
     $publicmail = "$firstName.$name@$publicDomain.$publicTld"
    
-    #if already exists
+    #if user already exists
     if (Get-ADUser -Filter {SamAccountName -eq $userLogin})
     {
         Write-Host "User $userLogin ($firstName $name) already exists." -ForegroundColor red        

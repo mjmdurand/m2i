@@ -16,7 +16,7 @@ if (Get-ADOrganizationalUnit -Filter 'distinguishedName -eq $rootOUpath') {
   } 
   else {
     Write-Host "Creating $rootOUpath OU" -ForegroundColor yellow
-    #New-ADOrganizationalUnit -Name $rootOU -Path "DC=$DCdomain,DC=$DCtld"
+    New-ADOrganizationalUnit -Name $rootOU -Path "DC=$DCdomain,DC=$DCtld"
   }
 
 #check if location OU is already created, creating it if not

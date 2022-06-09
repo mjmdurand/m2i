@@ -4,6 +4,13 @@
 ## Executer ce script avec sudo ##
 ##################################
 
+#Verification si le script est bien executé avec sudo/root
+if [  "$USER" != "root" ]
+then
+echo -e "\e[1;41mCe script doit être executé en tant que root/sudo.\e[0m"
+exit
+fi
+
 #Creation des groupes
 echo -e "\e[1;41mCreation de 2 groupes.\e[0m"
 read -p "Saisir le nom du premier groupe : " group1

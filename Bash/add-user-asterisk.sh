@@ -27,11 +27,11 @@ fi
 #Prompt user for informations
 read -p "Nom de l'utilisateur a créer : " username
 read -s -p "Mot de passe de l'utilisateur : " password
-read -p "Numero de l'utililsateur a creer : " number
-read -p "Priorite l'utililsateur a creer (1-4) : " priority
+echo ""
+read -p "Numero de l'utilisateur a creer : " number
+read -p "Priorite l'utilisateur a creer (1-4) : " priority
 echo "" 
 echo -e "\e[1;33m### L'utilisateur crée héritera des proprietes de \"tssr\" ###\e[0m" 
-echo ""
 
 #Adding informations in conf files
 echo "[$number](tssr)
@@ -42,5 +42,5 @@ echo -e "\n\e[1;32m### Ajouté dans le fichier $SIP ###\e[0m"
 echo "exten => $number,$priority,Dial(SIP/$number)" >> $EXTENSIONS
 echo -e "\n\e[1;32m### Ajouté dans le fichier $EXTENSIONS ###\e[0m" 
 
-echo "### Redemarrage du serveur ###" 
+echo -e "\e[1;33m### Redemarrage du serveur ###\e[0m" 
 systemctl restart asterisk

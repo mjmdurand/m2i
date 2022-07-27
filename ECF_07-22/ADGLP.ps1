@@ -12,16 +12,16 @@ if (Get-ADOrganizationalUnit -Filter 'distinguishedName -eq $GGOUpath') {
   } 
   else {
     Write-Host "Creating $rootOUpath OU" -ForegroundColor yellow
-    New-ADOrganizationalUnit -Name $rootOU -Path "DC=$DCdomain,DC=$DCtld"
+    New-ADOrganizationalUnit -Name "GG" -Path "OU=$rootOU,DC=$DCdomain,DC=$DCtld"
   }
 
-#check if GG OU is already created, creating it if not
+#check if DL OU is already created, creating it if not
 $DLOUpath = "OU=DL,OU=$rootOU,DC=$DCdomain,DC=$DCtld"
 if (Get-ADOrganizationalUnit -Filter 'distinguishedName -eq $DLOUpath') {
   } 
   else {
     Write-Host "Creating $rootOUpath OU" -ForegroundColor yellow
-    New-ADOrganizationalUnit -Name $rootOU -Path "DC=$DCdomain,DC=$DCtld"
+    New-ADOrganizationalUnit -Name "DL" -Path "OU=$rootOU,DC=$DCdomain,DC=$DCtld"
   }
 
 #Explode CSV
@@ -33,7 +33,7 @@ foreach($user in $data){
 ########################################################################################
     #Checking if GG is already in AD
     #if GG already exists
-    if (Get-ADGroup -Identity "GG_$name")
+    if (Get-ADGroup -Filter {SamAccountName -eq "GG_$name"})
     {
         Write-Host "GG_$name already exists." -ForegroundColor red        
     }
@@ -55,7 +55,7 @@ foreach($user in $data){
 ########################################################################################
     #Checking if DL_RO is already in AD
     #if DL_RO already exists
-    if (Get-ADGroup -Identity "DL_RO_$name")
+    if (Get-ADGroup -Filter {SamAccountName -eq "DL_RO_$name"})
     {
         Write-Host "DL_RO_$name already exists." -ForegroundColor red        
     }
@@ -77,7 +77,7 @@ foreach($user in $data){
 ########################################################################################
     #Checking if DL_RW is already in AD
     #if DL_RW already exists
-    if (Get-ADGroup -Identity "DL_RW_$name")
+    if (Get-ADGroup -Filter {SamAccountName -eq "DL_RW_$name"})
     {
         Write-Host "DL_RW_$name already exists." -ForegroundColor red        
     }
@@ -99,7 +99,7 @@ foreach($user in $data){
 ########################################################################################
     #Checking if DL_CT is already in AD
     #if DL_CT already exists
-    if (Get-ADGroup -Identity "DL_CT_$name")
+    if (Get-ADGroup -Filter {SamAccountName -eq "DL_CT_$name"})
     {
         Write-Host "DL_CT_$name already exists." -ForegroundColor red        
     }

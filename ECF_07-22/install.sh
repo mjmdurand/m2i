@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-HOME_DIR=/home/$SUDO_USER/m2i/
+HOME_DIR=/home/$SUDO_USER/m2i/ECF_07-22/
 IPCONF=$HOME_DIR/27072022.txt
 PHPINI=/etc/php/7.4/cli/php.ini
 
@@ -49,7 +49,7 @@ echo ""
 
 # install apache2, php, mariaDB
 echo -e "\e[1;34mInstalling web server.\e[0m"
-apt-get -y -q install apache2 php php-curl php-fileinfo php-gd php-json php-mbstring php-mysqli php-simplexml php-xml php-intl php-cli php-xmlrpc mariadb-server
+apt-get -y -q install git apache2 php php-curl php-fileinfo php-gd php-json php-mbstring php-mysqli php-simplexml php-xml php-intl php-cli php-xmlrpc mariadb-server
 echo -e "\e[1;32mInstallation done.\e[0m"
 echo ""
 
@@ -82,8 +82,8 @@ rm latest-fr_FR.tar.gz
 mv wordpress /home/www-data/$NomSite
 
 NomSite=infra.$domain
-source ${HOME_DIR}/ECF_07-22/apache2-VHost.sh
-source ${HOME_DIR}/ECF_07-22/DB-creation.sh
+source ${HOME_DIR}/apache2-VHost.sh
+source ${HOME_DIR}/DB-creation.sh
 
 
 #Install GLPI
@@ -93,7 +93,7 @@ rm glpi-10.0.2.tgz
 mv glpi /home/www-data/$NomSite
 
 NomSite=glpi.$domain
-source ${HOME_DIR}/ECF_07-22/apache2-VHost.sh
-source ${HOME_DIR}/ECF_07-22/DB-creation.sh
+source ${HOME_DIR}/apache2-VHost.sh
+source ${HOME_DIR}/DB-creation.sh
 
 chown -R www-data:www-data /home/www-data/

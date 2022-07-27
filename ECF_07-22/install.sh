@@ -76,23 +76,21 @@ then
 fi
 
 #Install Wordpress
+NomSite=infra.$domain
 wget https://fr.wordpress.org/latest-fr_FR.tar.gz
 tar -xf latest-fr_FR.tar.gz
 rm latest-fr_FR.tar.gz
 mv wordpress /home/www-data/$NomSite
-
-NomSite=infra.$domain
 source ${HOME_DIR}/apache2-VHost.sh
 source ${HOME_DIR}/DB-creation.sh
 
 
 #Install GLPI
+NomSite=glpi.$domain
 wget https://github.com/glpi-project/glpi/releases/download/10.0.2/glpi-10.0.2.tgz
 tar -xf glpi-10.0.2.tgz
 rm glpi-10.0.2.tgz
 mv glpi /home/www-data/$NomSite
-
-NomSite=glpi.$domain
 source ${HOME_DIR}/apache2-VHost.sh
 source ${HOME_DIR}/DB-creation.sh
 

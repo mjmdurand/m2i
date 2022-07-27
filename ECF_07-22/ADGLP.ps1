@@ -50,7 +50,7 @@ foreach($user in $data){
             -Path "OU=GG,OU=$rootOU,DC=$DCdomain,DC=$DCtld" `
             -Description "$name"
         }
-        catch {Write-Host "Error while creating GG_$name.." -ForegroundColor red }
+        catch {Write-Host "Error while creating GG_$name." -ForegroundColor red }
     }
 ########################################################################################
     #Checking if DL_RO is already in AD
@@ -72,7 +72,7 @@ foreach($user in $data){
             -Path "OU=DL,OU=$rootOU,DC=$DCdomain,DC=$DCtld" `
             -Description "$name"
         }
-        catch {Write-Host "Error while creating DL_RO_$name.." -ForegroundColor red }
+        catch {Write-Host "Error while creating DL_RO_$name." -ForegroundColor red }
     }
 ########################################################################################
     #Checking if DL_RW is already in AD
@@ -94,7 +94,7 @@ foreach($user in $data){
             -Path "OU=DL,OU=$rootOU,DC=$DCdomain,DC=$DCtld" `
             -Description "$name"
         }
-        catch {Write-Host "Error while creating DL_RW_$name.." -ForegroundColor red }
+        catch {Write-Host "Error while creating DL_RW_$name." -ForegroundColor red }
     }
 ########################################################################################
     #Checking if DL_CT is already in AD
@@ -116,7 +116,7 @@ foreach($user in $data){
             -Path "OU=DL,OU=$rootOU,DC=$DCdomain,DC=$DCtld" `
             -Description "$name"
         }
-        catch {Write-Host "Error while creating DL_CT_$name.." -ForegroundColor red }
+        catch {Write-Host "Error while creating DL_CT_$name." -ForegroundColor red }
     }
 
 }

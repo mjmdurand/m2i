@@ -77,7 +77,7 @@ fi
 
 #Install Wordpress
 wget https://fr.wordpress.org/latest-fr_FR.tar.gz
-tar -xvf latest-fr_FR.tar.gz
+tar -xf latest-fr_FR.tar.gz
 rm latest-fr_FR.tar.gz
 mv wordpress /home/www-data/$NomSite
 
@@ -88,7 +88,7 @@ source ${HOME_DIR}/DB-creation.sh
 
 #Install GLPI
 wget https://github.com/glpi-project/glpi/releases/download/10.0.2/glpi-10.0.2.tgz
-tar -xvf glpi-10.0.2.tgz
+tar -xf glpi-10.0.2.tgz
 rm glpi-10.0.2.tgz
 mv glpi /home/www-data/$NomSite
 

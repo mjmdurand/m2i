@@ -21,4 +21,4 @@ echo -e "\e[1;32mPermissions set.\e[0m"
 
 sudo mysql -u root -e "FLUSH PRIVILEGES;" 
 
-echo -e "\e[1;32m Database for $NomSite created.\e[0m"
+echo -e "\e[1;32mDatabase for $NomSite created.\e[0m"

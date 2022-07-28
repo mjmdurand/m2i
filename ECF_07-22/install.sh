@@ -49,7 +49,7 @@ echo ""
 
 # install apache2, php, mariaDB
 echo -e "\e[1;34mInstalling web server.\e[0m"
-apt-get -y -q install git apache2 php php-curl php-fileinfo php-gd php-json php-mbstring php-mysqli php-simplexml php-xml php-intl php-cli php-xmlrpc mariadb-server
+apt-get -y -q install git apache2 php php-curl php-fileinfo php-gd php-json php-mbstring php-mysqli php-simplexml php-xml php-intl php-cli php-xmlrpc php-ldap php-zip php-bz2 mariadb-server
 echo -e "\e[1;32mInstallation done.\e[0m"
 echo ""
 

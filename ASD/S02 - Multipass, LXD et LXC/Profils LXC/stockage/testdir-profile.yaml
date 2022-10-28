@@ -1,0 +1,4 @@
+testdir:
+  path: /var/www/test
+  source: /home/ubuntu/test
+  type: disk

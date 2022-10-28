@@ -1,0 +1,17 @@
+config: {}
+description: Default LXD profile
+devices:
+  hostport80:
+    connect: tcp:0.0.0.1:80
+    listen: tcp:127.0.0.1:8080
+    type: proxy
+  eth0:
+    name: eth0
+    network: lxdbr0
+    type: nic
+  root:
+    path: /
+    pool: default
+    type: disk
+name: proxy-80
+used_by: []

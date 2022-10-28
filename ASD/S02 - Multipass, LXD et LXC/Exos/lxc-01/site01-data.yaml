@@ -1,0 +1,9 @@
+config: {}
+description: mount site01 data folder
+devices:
+  site01-data:
+    path: /var/www/html
+    source: /home/ubuntu/site01
+    type: disk
+name: site01-data
+used_by: []

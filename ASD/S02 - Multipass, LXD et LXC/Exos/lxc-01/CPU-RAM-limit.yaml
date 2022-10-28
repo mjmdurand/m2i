@@ -1,0 +1,7 @@
+config:
+  limits.cpu: "1"
+  limits.memory: 512MiB
+description: ""
+devices: {}
+name: CPU-RAM-limit
+used_by: []

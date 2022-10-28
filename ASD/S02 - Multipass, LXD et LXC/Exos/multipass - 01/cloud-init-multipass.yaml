@@ -1,0 +1,42 @@
+#cloud-config
+keyboard:
+  layout: fr
+  variant: nodeadkeys
+package_update: true
+package_upgrade: true
+packages: 
+  - apache2
+  - powerline
+  - golang-go
+users:
+  - name: ubuntu
+    password: ubuntu
+    chpasswd: {expire:false}
+    ssh_pwauth: true
+    ssh_authorized_keys: 
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCp6svs8d9xyUm0WKIZx2DcE33m63JMaZmWHdquLwIKYK2mwoUeGU5HU3pNaRME1WViI0i6izAhMFcAkLL41TbPxcuw+cFZPRyR8ArJ3JejoVJyAIt0t/0lfaqSYZT+jGMDxPRkqxrX0lxDFMIkcHK2Q7fP4Faq3e8dHUipJccCucxnYF6bLknAt5PwVoLl4HZ2eM7pBHzJuNiHOYv+0IRBi/2tTzxt50t+g9EvwXTmV0IRjCVz9LYU0/ki2een5NnQMV2eEtGRM+XOIrtvfevn9oh6etRxxioZW7hBfRptveUQtvNwO+8KrYElyTbNC53jJ9C1NCcdY2Jn2kvhIjKxLmlIpA06W31jDnE2Z1efEqRtohfpUXC6M+EsbCtnfTn0XZHomDcoPH3H1EZwMANy91oGEU+f5Sy/HILeZH9NQILnjuswBcNWrk8zqsrQB5j1MIY5mWW7CDQYaV80KP6knDQ9B7rZk/R3beM4aCur9Xxdvtm0aFfST4SyyYBbHOc= Administrateur@WIN-ID1LPTK8RTC
+  - name: AnotherUser
+repo_update: true
+repo_upgrade: security
+runcmd:
+  - [ go install github.com/justjanne/powerline-go@latest ]
+write_files:
+  - path: /etc/issue
+    append: true
+    content: 'eth0: \4{eth0}'
+  - path: .bashrc
+    append: true
+    content: |
+      function _update_ps1() {
+          PS1="$($GOPATH/bin/powerline-go -error $? -jobs $(jobs -p | wc -l))"
+      }
+ 
+      if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
+          PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+      fi
+power_state:
+  delay: now
+  mode: reboot
+  message: Rebooting machine
+  condition: true
+

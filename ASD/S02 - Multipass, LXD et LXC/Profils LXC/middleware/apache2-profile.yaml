@@ -1,0 +1,21 @@
+config:
+  user.user-data: |
+    #cloud-config
+    package_update: true
+    package_upgrade: true
+    packages:
+      - wget
+      - curl
+      - apache2
+description: Apache2 LXD profile
+devices:
+  eth0:
+    name: eth0
+    network: lxdbr0
+    type: nic
+  root:
+    path: /
+    pool: default
+    type: disk
+name: proxy-80
+used_by: []lxc

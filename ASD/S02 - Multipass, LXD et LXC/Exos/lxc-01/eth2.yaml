@@ -1,0 +1,22 @@
+config:
+  user.network-config: |
+    version: 1
+    config:
+      - type: physical
+        name: eth0
+        subnets:
+          - type: dhcp
+            ipv4: true
+      - type: physical
+        name: eth2
+        subnets:
+          - type: dhcp
+            ipv4: true
+description: eth2 DHCP
+devices:
+  eth2:
+    name: eth2
+    network: site01
+    type: nic
+name: eth2
+used_by: []

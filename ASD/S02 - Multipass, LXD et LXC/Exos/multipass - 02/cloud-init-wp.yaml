@@ -1,0 +1,41 @@
+# cloud-config
+# multipass launch -n wordpress --cloud-init .\Documents\test\cloud-init-wp.yml
+keyboard:
+  layout: fr
+  variant: nodeadkeys
+package_update: true
+package_upgrade: true
+packages: 
+  - software-properties-common 
+  - apt-transport-https 
+  - apache2 
+  - php
+  - php-mysqli
+  - curl
+users:
+  - name: ubuntu
+    password: ubuntu
+    chpasswd: {expire:false}
+    ssh_pwauth: true
+repo_update: true
+repo_upgrade: security
+runcmd:
+  - [ mkdir, /run/tempdir ]
+  - [ wget, -O, /run/tempdir/wordpress.tgz, https://fr.wordpress.org/latest-fr_FR.tar.gz ]
+  - [ rm, /var/www/html/index.html ]
+  - [ tar, -zxvf,  /run/tempdir/wordpress.tgz, -C, /var/www/html/, --strip-components, 1 ]
+  - [ chown, -R, www-data:www-data, /var/www/html ]
+write_files:
+  - path: /etc/issue
+    append: true
+    content: 'eth0: \4{eth0}'
+power_state:
+  delay: now
+  mode: reboot
+  message: Rebooting machine
+  condition: true
+
+
+
+
+

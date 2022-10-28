@@ -1,0 +1,49 @@
+# cloud-config
+# multipass launch -n mariadb --cloud-init .\Documents\test\cloud-init-wp-db.yml --network name=mgmt
+keyboard:
+  layout: fr
+  variant: nodeadkeys
+package_update: true
+package_upgrade: true
+packages: 
+  - software-properties-common 
+  - apt-transport-https 
+  - mariadb-server
+users:
+  - name: ubuntu
+    password: ubuntu
+    chpasswd: {expire:false}
+    ssh_pwauth: true
+repo_update: true
+repo_upgrade: security
+runcmd:
+  - [ sed, -i, 's/bind-address            = 127.0.0.1/bind-address            = 0.0.0.0/g', /etc/mysql/mariadb.conf.d/50-server.cnf ]
+  - [ mysql, -u, root, -e, "CREATE DATABASE IF NOT EXISTS wordpress CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;" ]
+  - [  mysql, -u, root, -e, "CREATE USER IF NOT EXISTS 'wordpress'@'%';" ]
+  - [  mysql, -u, root, -e, "SET password FOR 'wordpress'@'%' = password('azerty@1');" ]
+  - [  mysql, -u, root, -e, "GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'%' IDENTIFIED BY 'azerty@1';" ]
+  - [  mysql, -u, root, -e, "FLUSH PRIVILEGES;" ]
+write_files:
+  - path: /etc/issue
+    append: true
+    content: 'eth0: \4{eth0}'
+  - path: /etc/netplan/60-extra0-static.yaml
+    append: true
+    content: |
+      network:
+        version: 2
+        ethernets:
+          extra0:
+            addresses:
+            - 192.168.100.101/24
+            dhcp4: false
+power_state:
+  delay: now
+  mode: reboot
+  message: Rebooting machine
+  condition: true
+
+
+
+
+

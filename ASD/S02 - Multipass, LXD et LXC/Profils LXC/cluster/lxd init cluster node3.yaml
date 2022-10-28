@@ -1,0 +1,43 @@
+config: {}
+networks: []
+storage_pools: []
+profiles: []
+projects: []
+cluster:
+  server_name: 10.0.1.120
+  enabled: true
+  member_config:
+  - entity: storage-pool
+    name: local
+    key: size
+    value: ""
+    description: '"size" property for storage pool "local"'
+  - entity: storage-pool
+    name: local
+    key: source
+    value: ""
+    description: '"source" property for storage pool "local"'
+  - entity: storage-pool
+    name: local
+    key: zfs.pool_name
+    value: ""
+    description: '"zfs.pool_name" property for storage pool "local"'
+  cluster_address: 10.0.1.100:8443
+  cluster_certificate: |
+    -----BEGIN CERTIFICATE-----
+    MIICADCCAYagAwIBAgIQTwDzxauR9w3bh57UsKwTxjAKBggqhkjOPQQDAzAzMRww
+    GgYDVQQKExNsaW51eGNvbnRhaW5lcnMub3JnMRMwEQYDVQQDDApyb290QG5vZGUx
+    MB4XDTIyMTAyODEzNDIxNFoXDTMyMTAyNTEzNDIxNFowMzEcMBoGA1UEChMTbGlu
+    dXhjb250YWluZXJzLm9yZzETMBEGA1UEAwwKcm9vdEBub2RlMTB2MBAGByqGSM49
+    AgEGBSuBBAAiA2IABHmZGelTlgax7BqID5ZDP+HpGcz/1ammvGMeqnCE/Fp9fFuM
+    8uTPjYjqBim5hWXVx6ofkn9Vq6HVSXy4jDjBBLfamHv5lDmtULC1gWarhGTuXfnt
+    QMNncL8eG/K+SZHQe6NfMF0wDgYDVR0PAQH/BAQDAgWgMBMGA1UdJQQMMAoGCCsG
+    AQUFBwMBMAwGA1UdEwEB/wQCMAAwKAYDVR0RBCEwH4IFbm9kZTGHBH8AAAGHEAAA
+    AAAAAAAAAAAAAAAAAAEwCgYIKoZIzj0EAwMDaAAwZQIwciechlcU6hmkHS95ewFa
+    hbu23YnwuwvbKQJzw/uPSJx+G1JBs57AN+n9uVQuePulAjEAlxEAfqCdub5jIqPT
+    qLwkn3PYVTHnGwhkiyLzM4VRGjrI8rVK/atFUURpWnndVJUo
+    -----END CERTIFICATE-----
+  server_address: 10.0.1.120:8443
+  cluster_password: ""
+  cluster_certificate_path: ""
+  cluster_token: ""

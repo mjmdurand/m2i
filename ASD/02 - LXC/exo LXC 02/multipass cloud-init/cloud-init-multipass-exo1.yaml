@@ -1,0 +1,30 @@
+#cloud-config
+keyboard:
+  layout: fr
+  variant: nodeadkeys
+package_update: true
+package_upgrade: true
+packages: 
+  - zfsutils-linux 
+  - linux-azure
+repo_update: true
+repo_upgrade: security
+write_files:
+  - path: /etc/issue
+    append: true
+    content: 'eth0: \4{eth0}'
+  - path: /etc/netplan/51-cluster.yaml
+    append: true
+    content: |
+      network:
+        ethernets:
+            eth1:
+                dhcp4: false
+                addresses:
+                  - 10.0.2.100/24
+power_state:
+  delay: now
+  mode: reboot
+  message: Rebooting machine
+  condition: true
+

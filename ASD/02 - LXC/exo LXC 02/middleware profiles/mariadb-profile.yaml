@@ -1,0 +1,24 @@
+config:
+  user.user-data: |
+    #cloud-config
+    package_update: true
+    package_upgrade: true
+    packages: 
+      - software-properties-common 
+      - apt-transport-https 
+      - mariadb-server
+      - mariadb-client
+    repo_update: true
+    repo_upgrade: security
+description: mariaDB LXD profile
+devices:
+  eth0:
+    name: eth0
+    network: lxdfan0
+    type: nic
+  root:
+    path: /
+    pool: data
+    type: disk
+name: mariadb
+used_by: []

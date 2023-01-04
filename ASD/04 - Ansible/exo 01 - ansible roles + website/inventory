@@ -1,0 +1,8 @@
+all:
+    children:
+      ubuntuwebservers:
+        hosts:
+          srv1:
+            ansible_host: srv1.lxd
+          srv2:
+            ansible_host: srv2.lxd

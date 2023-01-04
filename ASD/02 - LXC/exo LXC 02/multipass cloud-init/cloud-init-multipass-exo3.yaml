@@ -1,0 +1,63 @@
+#cloud-config
+keyboard:
+  layout: fr
+  variant: nodeadkeys
+package_update: true
+package_upgrade: true
+packages: 
+  - zfsutils-linux 
+  - linux-azure
+repo_update: true
+repo_upgrade: security
+write_files:
+  - path: /etc/issue
+    append: true
+    content: 'eth0: \4{eth0}'
+  - path: /etc/netplan/51-cluster.yaml
+    append: true
+    content: |
+      network:
+        ethernets:
+            eth1:
+                dhcp4: false
+                addresses:
+                  - 10.0.2.120/24
+  - path: /home/ubuntu/lxd-init.yaml
+    append: true
+    content: |
+      config: {}
+      networks: []
+      storage_pools: []
+      profiles: []
+      projects: []
+      cluster:
+        server_name: 10.0.2.120
+        enabled: true
+        member_config:
+        - entity: storage-pool
+          name: local
+          key: size
+          value: ""
+          description: '"size" property for storage pool "local"'
+        - entity: storage-pool
+          name: local
+          key: source
+          value: ""
+          description: '"source" property for storage pool "local"'
+        - entity: storage-pool
+          name: local
+          key: zfs.pool_name
+          value: ""
+          description: '"zfs.pool_name" property for storage pool "local"'
+        cluster_address: 10.0.2.100:8443
+        server_address: 10.0.2.120:8443
+        cluster_password: ""
+        cluster_certificate_path: ""
+        cluster_token: "eyJzZXJ2ZXJfbmFtZSI6IjEwLjAuMi4xMjAiLCJmaW5nZXJwcmludCI6IjJhYjg4NjFmNTE3NzM1Y2Q3ODhkNGRlY2VlMzEyNjVkYWRmNGY0MDY4M2FlMTdiMjYwZTY2NWIyZjA0ODEyNTgiLCJhZGRyZXNzZXMiOlsiMTAuMC4yLjEwMDo4NDQzIl0sInNlY3JldCI6ImFhMmZiNTY2MWNkMzAwNTA1MzE2YmZlMDdlNmFmYjg5Yjg3ZDY1MTUzNWJhMjlmMmI1ZWMyODhkOTU5MTFjYjMifQ=="
+runcmd:
+  - [ cat /home/ubuntu/lxd-init.yaml | lxd init --preseed ]
+power_state:
+  delay: now
+  mode: reboot
+  message: Rebooting machine
+  condition: true

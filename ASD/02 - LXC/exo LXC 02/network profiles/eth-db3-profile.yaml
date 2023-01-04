@@ -1,0 +1,23 @@
+config:
+  user.network-config: |
+    version: 1
+    config:
+      - type: physical
+        name: eth0
+        subnets:
+          - type: dhcp
+            ipv4: true
+      - type: physical
+        name: eth1
+        subnets:
+          - type: static
+            address: 10.0.3.110/24
+            ipv4: true
+description: eth1 static
+devices:
+  eth1:
+    name: eth1
+    network: mariadb
+    type: nic
+name: eth1
+used_by: []

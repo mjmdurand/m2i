@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>Instance {{ ansible_hostname }}</title>
+    </head>
+    <body>
+        <p>
+            Cette VM se nomme : {{ ansible_hostname }}.
+        </p>
+        <p>
+            Son adresse IP est : {{ ansible_default_ipv4.address }}
+        </p>
+    </body>
+</html>

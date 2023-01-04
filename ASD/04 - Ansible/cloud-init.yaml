@@ -1,0 +1,45 @@
+config:
+  user.user-data: |
+    #cloud-config
+    keyboard:
+      layout: fr
+      variant: nodeadkeys
+    package_update: true
+    package_upgrade: true
+    repo_update: true
+    repo_upgrade: security
+    packages: 
+      - openssh-server
+      - python3
+    users:
+      - default
+      - name: ansible
+        gecos: Ansible User
+        sudo:  ALL=(ALL) NOPASSWD:ALL
+        lock_passwd: false
+        shell: /bin/bash
+        passwd: $6$cqooxfeiTO09l883$7BWb9rXSR3FfFT8hMg5D6YP6Z21KPKnlNeO8YVnZsbhhCLhNP8M7vud8KeyP2QS5Fv/27ghWk/i5L7K.1TnQ./
+        ssh_authorized_keys:
+          - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDNU9c7dbVWMN4l0sxkYKnSZ8i+RzbLm+/oj7G0plC0LH9hoOSaLX8uvect8QS+0zSRu83MRKO4cgdnX9juqz1I8nle9bFGRic5/9lzPS4vU8ERQNyefcM3agO8A7ZBpz4ZF+Oba+JxX8H9VMKJgptpLT8XEXziZc235UWIhENYAmx7QjDNUo/gqXID4YwCblrBxWuyGdfANIrBZ7AozBiWmI60ra/cnB6eubnKV6jnBOV5vefZJjQUkLTxS279a6PZLc5Rw5ylI9c9gqURlbOt6eZr5HUHL4gTlG2hMthJkjFFbQk3o+9xDt20mFsrNm5O4SahJC5KeqkiuFv1N64AK00XR2y3pj8sCeCQH0IB0ZYLi/aJsbbexBYugq5EtIjO2QBJompdgWgrz/eEGzkpa7JNE9qIMtMML3VT4ABdbxhyN3CZhPkLN1o0usMmL3MBIdKT3ZO2ZjM6yHCkZG1c38n2Nu7MPnrY7wojNneC8FDnWPkkiKVHorlB7uvVpjPPCFx2vnGflES/VBuKbMuXiJ4EQXcvJuWu68ELEUnl+bD5TOvoktgdpUd993LnAuniQarLbBRQcdc8CJOlq2OPzA+8cLt+XS90D3qTtSJ5b5vUQD7tPqSfquEIfQIlQUELZledtxitFc0rV76dTfk/L1jFo7C9bxvQAbqV4B9fhw== Administrateur@v13-vm02"
+    write_files:
+      - path: /etc/issue
+        append: true
+        content: 'eth0: \4{eth0}'
+    power_state:
+      delay: now
+      mode: reboot
+      message: Rebooting machine
+      condition: true
+
+description: Default Ubuntu
+devices:
+  eth0:
+    name: eth0
+    network: lxdbr0
+    type: nic
+  root:
+    path: /
+    pool: default
+    type: disk
+name: ubuntu-base
+used_by: []

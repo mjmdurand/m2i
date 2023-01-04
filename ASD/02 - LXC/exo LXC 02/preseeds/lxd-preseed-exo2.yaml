@@ -1,0 +1,29 @@
+config: {}
+networks: []
+storage_pools: []
+profiles: []
+projects: []
+cluster:
+  server_name: 10.0.2.110
+  enabled: true
+  member_config:
+  - entity: storage-pool
+    name: local
+    key: size
+    value: ""
+    description: '"size" property for storage pool "local"'
+  - entity: storage-pool
+    name: local
+    key: source
+    value: ""
+    description: '"source" property for storage pool "local"'
+  - entity: storage-pool
+    name: local
+    key: zfs.pool_name
+    value: ""
+    description: '"zfs.pool_name" property for storage pool "local"'
+  cluster_address: 10.0.2.100:8443
+  server_address: 10.0.2.110:8443
+  cluster_password: ""
+  cluster_certificate_path: ""
+  cluster_token: "eyJzZXJ2ZXJfbmFtZSI6IjEwLjAuMi4xMTAiLCJmaW5nZXJwcmludCI6IjEwMzIyNmMwYTI3NzU2Y2QzMDNhZDFlN2ZkNWFlODZhMjk3ZDE0ODYzOTBiMGRjOTYzM2U2MmQ5YWMzMzk1YzUiLCJhZGRyZXNzZXMiOlsiMTAuMC4yLjEwMDo4NDQzIl0sInNlY3JldCI6IjRlNzJmYzJkZmRmODU5MTM1ZTM4Mjc4M2I0YzA0YzVhYjQzZjUyYmQxNmQ2N2RlYWFjYjlmZGU2Y2ZkOTIzYjkifQ=="

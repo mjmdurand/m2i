@@ -1,0 +1,102 @@
+---
+- name: Deploy ubuntu web servers
+  hosts: ubuntuwebservers
+  gather_facts: true
+  become: true
+  tasks:
+    - name: Install Apache2 and unzip
+      ansible.builtin.apt:
+        name:
+          - apache2
+          - unzip
+        state: present
+      tags:
+        - install
+
+    - name: Check HTTP (status 200)
+      ansible.builtin.uri:
+        url: "http://{{ ansible_hostname }}"
+      tags:
+        - check
+
+    - name: "Copy html files"
+      ansible.builtin.template:
+        src: "files/html/index.html"
+        dest: "/var/www/html/index.html"
+      tags:
+        - copy
+
+    - name: Check default HTTP content
+      ansible.builtin.uri:
+        url: "http://{{ ansible_default_ipv4.address }}"
+        return_content: yes
+      register: this
+      failed_when: "\"{{ ansible_default_ipv4.address  }}\" not in this.content"
+      tags:
+        - check
+
+    - name: Download html5up massively theme
+      ansible.builtin.get_url:
+        validate_certs: false
+        url: https://html5up.net/massively/download
+        dest: /tmp/html5up-massively.zip
+        mode: '0440'
+      tags:
+        - download
+
+
+    - name: Create vhost directory
+      ansible.builtin.file:
+        path: /var/www/html/{{ ansible_hostname }}/
+        state: directory
+        mode: '0755'
+      tags: 
+        - directory
+
+
+    - name: Unzip archive
+      ansible.builtin.unarchive:
+        src: /tmp/html5up-massively.zip
+        dest: "/var/www/html/{{ ansible_hostname }}/"
+        group: www-data
+        remote_src: true
+      tags: 
+        - extract
+
+    - name: Remove archive
+      ansible.builtin.file:
+        path: /tmp/html5up-massively.zip
+        state: absent
+      tags: 
+        - remove
+
+    - name: "Copy Vhost"
+      ansible.builtin.template:
+        src: "files/vhosts/massively.conf"
+        dest: "/etc/apache2/sites-available/massively.conf"
+      tags: 
+        - copy
+
+    - name: Add vhost symlink in sites-enabled.
+      ansible.builtin.file:
+        src: "/etc/apache2/sites-available/massively.conf"
+        dest: "/etc/apache2/sites-enabled/massively.conf"
+        state: link
+        mode: 0644
+      tags: 
+        - vhosts
+
+    - name: Restart apache2 service
+      ansible.builtin.service:
+        name: apache2
+        state: restarted
+      tags: apache2_restart
+
+    - name: Check Vhost HTTP content
+      ansible.builtin.uri:
+        url: "http://{{ ansible_fqdn }}"
+        return_content: yes
+      register: this
+      failed_when: "'Massively by HTML5 UP' not in this.content"
+      tags:
+        - check

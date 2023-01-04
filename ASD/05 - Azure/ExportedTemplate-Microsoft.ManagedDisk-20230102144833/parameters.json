@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "diskName": {
+            "value": "az-104-03a-disk1"
+        },
+        "location": {
+            "value": "francecentral"
+        },
+        "sku": {
+            "value": "StandardSSD_LRS"
+        },
+        "diskSizeGb": {
+            "value": 32
+        },
+        "sourceResourceId": {
+            "value": ""
+        },
+        "createOption": {
+            "value": "empty"
+        },
+        "hyperVGeneration": {
+            "value": ""
+        },
+        "diskEncryptionSetType": {
+            "value": "EncryptionAtRestWithPlatformKey"
+        },
+        "dataAccessAuthMode": {
+            "value": "None"
+        },
+        "networkAccessPolicy": {
+            "value": "AllowAll"
+        },
+        "publicNetworkAccess": {
+            "value": "Enabled"
+        }
+    }
+}

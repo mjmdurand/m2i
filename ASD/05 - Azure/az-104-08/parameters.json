@@ -1,0 +1,102 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "eastus"
+        },
+        "networkInterfaceName1": {
+            "value": "az104-08-vm0841_z1"
+        },
+        "networkSecurityGroupName": {
+            "value": "az104-08-vm0-nsg"
+        },
+        "networkSecurityGroupRules": {
+            "value": []
+        },
+        "subnetName": {
+            "value": "subnet0"
+        },
+        "virtualNetworkName": {
+            "value": "az104-08-rg-vnet01"
+        },
+        "addressPrefixes": {
+            "value": [
+                "10.80.0.0/20"
+            ]
+        },
+        "subnets": {
+            "value": [
+                {
+                    "name": "subnet0",
+                    "properties": {
+                        "addressPrefix": "10.80.0.0/24"
+                    }
+                }
+            ]
+        },
+        "publicIpAddressName1": {
+            "value": "az104-08-vm0-ip"
+        },
+        "publicIpAddressType": {
+            "value": "Static"
+        },
+        "publicIpAddressSku": {
+            "value": "Standard"
+        },
+        "pipDeleteOption": {
+            "value": "Detach"
+        },
+        "virtualMachineName": {
+            "value": "az104-08-vm0"
+        },
+        "virtualMachineName1": {
+            "value": "az104-08-vm0"
+        },
+        "virtualMachineComputerName1": {
+            "value": "az104-08-vm0"
+        },
+        "virtualMachineRG": {
+            "value": "az104-08-rg"
+        },
+        "osDiskType": {
+            "value": "Premium_LRS"
+        },
+        "osDiskDeleteOption": {
+            "value": "Delete"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_B1s"
+        },
+        "nicDeleteOption": {
+            "value": "Detach"
+        },
+        "adminUsername": {
+            "value": "Student"
+        },
+        "adminPassword": {
+            "value": null
+        },
+        "patchMode": {
+            "value": "Manual"
+        },
+        "enableHotpatching": {
+            "value": false
+        },
+        "diagnosticsStorageAccountName": {
+            "value": "az10408rgdiag"
+        },
+        "diagnosticsStorageAccountId": {
+            "value": "Microsoft.Storage/storageAccounts/az10408rgdiag"
+        },
+        "diagnosticsStorageAccountType": {
+            "value": "Standard_LRS"
+        },
+        "diagnosticsStorageAccountKind": {
+            "value": "Storage"
+        },
+        "zone": {
+            "value": "1"
+        }
+    }
+}

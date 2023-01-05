@@ -1,0 +1,16 @@
+        {
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "apiVersion": "2022-08-01",
+            "name": "[concat(parameters('virtualMachines_az104_08_vm1_name'), '/customScriptExtension')]",
+            "location": "eastus",
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_az104_08_vm1_name'))]"
+            ],
+            "properties": {
+                "autoUpgradeMinorVersion": true,
+                "publisher": "Microsoft.Compute",
+                "type": "CustomScriptExtension",
+                "typeHandlerVersion": "1.7",
+                "settings": {
+                    "commandToExecute": "powershell.exe Install-WindowsFeature -name Web-Server -IncludeManagementTools && powershell.exe remove-item 'C:\\inetpub\\wwwroot\\iisstart.htm' && powershell.exe Add-Content -Path 'C:\\inetpub\\wwwroot\\iisstart.htm' -Value $($env:computername) && powershell.exe New-StoragePool -FriendlyName storagepool1 -StorageSubsystemFriendlyName 'Windows Storage*' -PhysicalDisks (Get-PhysicalDisk -CanPool $true) && powershell.exe New-VirtualDisk -StoragePoolFriendlyName storagepool1 -FriendlyName virtualdisk1 -Size 2046GB -ResiliencySettingName Simple -ProvisioningType Fixed && powershell.exe Initialize-Disk -VirtualDisk (Get-VirtualDisk -FriendlyName virtualdisk1) && powershell.exe New-Partition -DiskNumber 4 -UseMaximumSize -DriveLetter Z"
+                },
